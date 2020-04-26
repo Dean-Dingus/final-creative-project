@@ -31,10 +31,12 @@ object patternGUI extends App {
 
     val totalPanel = new JPanel()
     totalPanel.setLayout(new BoxLayout(totalPanel, BoxLayout.Y_AXIS))
-
+    
+    //Define two fonts to differentiate text 
     val beefy = new Font(Font.SERIF, Font.BOLD, 14)
     val lean = new Font(Font.SANS_SERIF, Font.PLAIN, 18)
 
+    //Define frame and competitor scores
     val f= new JFrame("Pattern Challenge")
     val userIden = new JLabel("User Score:")
     userIden.setFont(beefy)
@@ -45,11 +47,13 @@ object patternGUI extends App {
     val compScore = new JLabel()
     compScore.setFont(beefy)
 
+    //Update points from previous game
     var userPoints = uScore
     var compPoints = cScore
     userScore.setText(userPoints.toString()) //this should carry over from the old game
     compScore.setText(compPoints.toString()) //as parameters for the function call
 
+    //Panel to hold scores
     val topPanel = new JPanel()
     topPanel.setLayout(new FlowLayout())
     topPanel.setBackground(Color.GRAY)
@@ -58,8 +62,10 @@ object patternGUI extends App {
     topPanel.add(compIden)
     topPanel.add(compScore)
 
+    //Holy Cross Purple for backgrounds
     val HC = new Color(169, 82, 201)
 
+    //This will hold the play area
     val middlePanel = new JPanel()
     middlePanel.setLayout(new BoxLayout(middlePanel, BoxLayout.X_AXIS))
     val userSide = new JPanel()
@@ -73,10 +79,11 @@ object patternGUI extends App {
     compSide.setBackground(HC)
     compSide.setBorder(BorderFactory.createLineBorder(Color.BLACK))
 
+    //Holds the drop-down box and submission button
     val bottomPanel = new JPanel()
     bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.X_AXIS))
     bottomPanel.setBackground(HC)
-    //FlowLayout.LEADING
+
     //An array to store the panels needed for the user's questions
     var userQ : Array[JTextPane] = new Array[JTextPane] (4)
     val title1 = new JLabel("User Question:")
@@ -97,6 +104,7 @@ object patternGUI extends App {
       userSide.add(userQ(x))
     }
 
+    //An visually equivalent copy of the user side
     val compQ : Array[JTextPane] = new Array[JTextPane] (4)
     val title2 = new JLabel("Comp Question:")
     title2.setFont(beefy)
@@ -201,7 +209,7 @@ object patternGUI extends App {
 
     }
     submit.addActionListener(actions)
-    val realPanel = new JPanel()
+    val realPanel = new JPanel() //Panel to hold the button/dropdown 
     realPanel.setBounds(0, 0, 250, 100)
     realPanel.setBackground(HC)
     realPanel.add(comboBox)
@@ -211,6 +219,7 @@ object patternGUI extends App {
     bottomPanel.add(realPanel)
     bottomPanel.add(dummyPanel)
 
+    //assemble pieces of the GUI together
     totalPanel.add(topPanel)
     totalPanel.add(middlePanel)
     totalPanel.add(bottomPanel)
@@ -220,7 +229,5 @@ object patternGUI extends App {
     f.setResizable(false)
     f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE)
     f.setLocation(400, 150)
-
-
   }
 }
